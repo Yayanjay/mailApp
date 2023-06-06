@@ -18,7 +18,7 @@ public class Email {
         this.firstName = firstName;
         this.lastName = lastName;
         this.fullName = firstName + " " + lastName;
-        System.out.println("Hi, " + fullName + "\n");
+        System.out.println("\nHi, " + fullName + "\n");
 
         this.department = setDepartment();
 
