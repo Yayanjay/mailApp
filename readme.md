@@ -34,13 +34,5 @@ The Email Account Creation program is designed to automate the process of creati
 ## Dependencies
 The Email Account Creation program does not have any external dependencies. It is built using core Java libraries.
 
-## Contributions
-Contributions to the Email Account Creation program are welcome. If you encounter any issues or have suggestions for improvements, please create a new issue on the GitHub repository.
-
-## Authors
-- Zayyan Abdillah <yayanabdillah01@gmail.com>
-
-Feel free to contact the author with any questions or feedback.
-
 ---
 By following this documentation, you can set up and use the Email Account Creation program to automate the process of creating email accounts for new hires in your company. Enjoy the streamlined onboarding process!
