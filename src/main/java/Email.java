@@ -9,6 +9,7 @@ public class Email {
     private String companyDomain = "asylum.com";
     private String email;
     private String altEmail;
+    private String[] departments = {"Human Resources", "Sales", "Finance", "Marketing", "IT"}; // change this if you want to edit the available departments
     private int mailboxCapacity = 500;
     private int defaultPasswordLength = 8;
 
@@ -20,31 +21,31 @@ public class Email {
         System.out.println("Hi, " + fullName + "\n");
 
         this.department = setDepartment();
-//        System.out.println("The Department is \t\t" + this.department);
 
         this.password = randomPassword(defaultPasswordLength);
-//        System.out.println("The Password is \t\t" + this.password);
 
-        this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companyDomain;
-//        System.out.printf("The Company Email is \t" + email);
+        this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department.toLowerCase().replaceAll("\\s+","") + "." + companyDomain;
     }
 
     // choose department
     private String setDepartment() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Department lists are, \n1. Sales \n2. Development \n3. Accounting \ntype the number : ");
-
-        int deptChosen = sc.nextInt();
-        if (deptChosen == 1) {
-            return "sales";
-        } else if (deptChosen == 2) {
-            return "development";
-        } else if (deptChosen == 3) {
-            return "accounting";
-        } else {
-            return "no dept is choosen";
+        System.out.println("Available Departments:");
+        for (int i = 0; i < departments.length; i++) {
+            System.out.println((i + 1) + ". " + departments[i]);
         }
 
+        // Get user input for department selection
+        Scanner scanner = new Scanner(System.in);
+        int selectedDepartment;
+        do {
+            System.out.print("Select department (1-" + departments.length + "): ");
+            selectedDepartment = scanner.nextInt();
+        } while (selectedDepartment < 1 || selectedDepartment > departments.length);
+
+        // Match the user's input with the department from the list
+        String department = departments[selectedDepartment - 1];
+        System.out.println("Selected department: " + department);
+        return department;
     }
 
     // generate password
@@ -90,9 +91,14 @@ public class Email {
 
     // show info
     public String showInfo() {
-        return "\nDisplay Name \t\t: " + firstName + " " + lastName +
-                "\nCompany Email \t\t: " + email +
-                "\nMailbox Capacity \t: " + mailboxCapacity + "mb" +
-                "\n\n" + "Welcome " + fullName + ", You're in " + department + " department!";
+        if (department == null) {
+            return "Cannot find the department, Please enter the correct number";
+        } else {
+            return "\nDisplay Name \t\t: " + firstName + " " + lastName +
+                    "\nCompany Email \t\t: " + email +
+                    "\nEmail Password \t\t: " + password + " (please change this immediately)" +
+                    "\nMailbox Capacity \t: " + mailboxCapacity + "mb" +
+                    "\n\n" + "Welcome " + fullName + ", You're in " + department + " department!";
+        }
     }
 }
